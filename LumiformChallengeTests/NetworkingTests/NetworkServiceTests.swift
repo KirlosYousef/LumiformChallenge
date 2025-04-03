@@ -9,7 +9,7 @@ import Foundation
 import Testing
 @testable import LumiformChallenge
 
-struct NetworkServiceTests {
+@Suite("Network service tests") struct NetworkServiceTests {
     struct SuccessTests {
         @Test("Test successful page fetch") func successfulFetch() async throws {
             // Arrange

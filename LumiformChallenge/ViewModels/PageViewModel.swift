@@ -10,13 +10,13 @@ import SwiftUI
 @MainActor
 class PageViewModel: ObservableObject {
     // MARK: - Published Properties
-    @Published var page: Item? = nil
-    @Published var isLoading = false
+    @Published private(set)var page: Item? = nil
+    @Published private(set)var isLoading = false
     
     @Published var hasError: Bool = false
-    @Published var errorMessage: String? {
+    @Published private(set)var errorMessage: String? {
         didSet {
-            hasError = true
+            hasError = errorMessage != nil
         }
     }
     
@@ -36,7 +36,7 @@ class PageViewModel: ObservableObject {
         do {
             // Try network first
             let networkPage = try await networkService.fetchPage()
-            page = networkPage
+            self.page = networkPage.withDepthLevels()
             // TODO: Save to cache
         } catch {
             errorMessage = handleError(error)
@@ -45,6 +45,10 @@ class PageViewModel: ObservableObject {
     }
     
     // MARK: - Error Handling
+    func removeError() {
+        errorMessage = nil
+    }
+    
     private func handleError(_ error: Error) -> String {
         if let networkError = error as? NetworkError {
             return networkError.localizedDescription

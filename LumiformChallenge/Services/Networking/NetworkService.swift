@@ -28,7 +28,7 @@ extension NetworkService: NetworkServiceProtocol {
             throw NetworkError.invalidURL
         }
         
-        let (data, response) = try await client.data(from:  url)
+        let (data, response) = try await client.data(from: url)
         
         // Handle server error codes
         guard let httpResponse = response as? HTTPURLResponse,
@@ -40,6 +40,7 @@ extension NetworkService: NetworkServiceProtocol {
             let page = try JSONDecoder().decode(Item.self, from: data)
             return page
         } catch {
+            print("Decoding error: \(error)")
             throw NetworkError.decodingFailed
         }
     }

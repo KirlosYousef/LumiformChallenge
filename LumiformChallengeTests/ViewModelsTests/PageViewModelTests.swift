@@ -8,7 +8,7 @@
 import Testing
 @testable import LumiformChallenge
 
-struct ContentViewModelTests {
+@Suite("Page view model tests") struct PageViewModelTests {
     struct SuccessTests {
         @Test("Test successful page data loading") func successfulPageDataLoading() async {
             // Arrange

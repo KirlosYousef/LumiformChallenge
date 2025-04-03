@@ -9,6 +9,6 @@ import Foundation
 
 enum Constants {
     enum API {
-        static let formHierarchyURL = URL(string: "https://mocki.io/v1/6c823976-465e-401e-ae8d-d657d278e98e")
+        static let pageURL = URL(string: "https://mocki.io/v1/6c823976-465e-401e-ae8d-d657d278e98e")
     }
 }

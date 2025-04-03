@@ -26,10 +26,30 @@ enum MockPage {
                         type: .image,
                         title: "Sample Image",
                         items: nil,
-                        imageURL: "https://example.com/image.jpg"
+                        imageURL: "https://robohash.org/100?&set=set4&size=400x400"
                     )
                 ],
                 imageURL: nil
+            )
+        ],
+        imageURL: nil
+    )
+    
+    static let validSection = Item(
+        type: .section,
+        title: "Mock Section",
+        items: [
+            Item(
+                type: .text,
+                title: "Sample Text Question",
+                items: nil,
+                imageURL: nil
+            ),
+            Item(
+                type: .image,
+                title: "Sample Image",
+                items: nil,
+                imageURL: "https://robohash.org/100?&set=set4&size=400x400"
             )
         ],
         imageURL: nil

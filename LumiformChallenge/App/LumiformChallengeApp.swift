@@ -11,7 +11,7 @@ import SwiftUI
 struct LumiformChallengeApp: App {
     var body: some Scene {
         WindowGroup {
-            PageView()
+            MainPageView()
         }
     }
 }
