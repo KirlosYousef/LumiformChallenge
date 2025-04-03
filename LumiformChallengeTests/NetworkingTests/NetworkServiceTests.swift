@@ -11,17 +11,17 @@ import Testing
 
 struct NetworkServiceTests {
     struct SuccessTests {
-        @Test("Test successful data fetch") func successfulFetch() async throws {
+        @Test("Test successful page fetch") func successfulFetch() async throws {
             // Arrange
-            let mockData = try JSONEncoder().encode([MockPage.valid])
+            let mockData = try JSONEncoder().encode(MockPage.valid)
             let client = MockNetworkClient(data: mockData, statusCode: 200)
             let service = NetworkService(client: client)
             
             // Act
-            let items = try await service.fetchHierarchy()
+            let page = try await service.fetchPage()
             
             // Assert
-            #expect(items.count == 1)
+            #expect(page.type == .page)
         }
     }
     
@@ -33,7 +33,7 @@ struct NetworkServiceTests {
             
             // Act/Assert
             await #expect(throws: NetworkError.serverError(code: 500)) {
-                try await service.fetchHierarchy()
+                try await service.fetchPage()
             }
         }
         
@@ -45,7 +45,7 @@ struct NetworkServiceTests {
             
             // Act/Assert
             await #expect(throws: NetworkError.decodingFailed) {
-                try await service.fetchHierarchy()
+                try await service.fetchPage()
             }
         }
     }
