@@ -25,7 +25,7 @@ struct HierarchyFont: ViewModifier {
                     .font(.system(size: fontSize, weight: .medium, design: .rounded))
             case .text:
                 content
-                    .font(.system(size: 17, weight: .regular, design: .rounded))
+                    .fontDesign(.rounded)
             case .image:
                 content
                     .font(.system(size: 12, weight: .medium, design: .rounded))
@@ -44,7 +44,7 @@ struct AnimatedCardStyle: ViewModifier {
             .padding()
             .background {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color(.secondarySystemBackground))//colorScheme == .dark ? Color(white: 0.2) : Color.white)
+                    .fill(Color(.secondarySystemBackground))
                     .strokeBorder(Color(.label).opacity(0.1), lineWidth: 0.5)
             }
             .animation(.spring(response: 0.3), value: UUID())

@@ -1,0 +1,49 @@
+//
+//  RealmItem.swift
+//  LumiformChallenge
+//
+//  Created by Kirlos Yousef on 05/04/2025.
+//
+
+import Foundation
+import RealmSwift
+
+class RealmItem: Object, Identifiable {
+    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted var type: String
+    @Persisted var title: String?
+    @Persisted var items: List<RealmItem>
+    @Persisted var imageURL: String?
+    @Persisted var depthLevel: Int
+    @Persisted var isRootPage: Bool = false
+    
+    convenience init(item: Item, isRootPage: Bool = false) {
+        self.init()
+        self.type = item.type.rawValue
+        self.title = item.title
+        self.imageURL = item.imageURL
+        self.depthLevel = item.depthLevel
+        self.isRootPage = isRootPage
+        
+        // List initialization
+        let children = List<RealmItem>()
+        item.items?.forEach { child in
+            let realmChild = RealmItem(item: child)
+            if !children.contains(where: { $0.id == realmChild.id }) {
+                children.append(realmChild)
+            }
+        }
+        self.items = children
+    }
+    
+    func toItem() -> Item {
+        Item(
+            id: UUID(uuidString: id.stringValue) ?? UUID(),
+            type: ItemType(rawValue: type) ?? .page,
+            title: title,
+            items: items.map { $0.toItem() },
+            imageURL: imageURL,
+            depthLevel: depthLevel
+        )
+    }
+}

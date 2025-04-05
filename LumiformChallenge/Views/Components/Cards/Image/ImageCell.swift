@@ -19,7 +19,8 @@ struct ImageCell: View {
                 switch phase {
                 case .empty:
                     ProgressView()
-                        .frame(width: 300, height: 200)
+                        .frame(height: 200)
+                        .frame(maxWidth: 300)
                         .background(Color.gray.opacity(0.1))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 case .success(let image):
@@ -40,7 +41,8 @@ struct ImageCell: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 80, height: 80)
-                        .frame(width: 300, height: 200)
+                        .frame(height: 200)
+                        .frame(maxWidth: 300)
                         .background(Color.gray.opacity(0.1))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 @unknown default:

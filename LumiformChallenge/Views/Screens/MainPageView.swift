@@ -13,12 +13,15 @@ struct MainPageView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                if let page = viewModel.page {
-                    HierarchicalListView(rootItem: page)
-                } else {
+                if viewModel.page.isEmpty {
                     UnavailableDataView {
                         loadData()
                     }
+                } else {
+                    List(viewModel.page.where { $0.isRootPage }) { pageItem in
+                        HierarchicalListView(rootItem: pageItem.toItem())
+                    }
+                    .listStyle(.plain)
                 }
             }
             .navigationTitle("Content Browser")

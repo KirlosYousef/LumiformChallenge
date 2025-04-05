@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 @MainActor
 class PageViewModel: ObservableObject {
     // MARK: - Published Properties
-    @Published private(set)var page: Item? = nil
+    @ObservedResults(RealmItem.self) var page
     @Published private(set)var isLoading = false
     
     @Published var hasError: Bool = false
@@ -31,16 +32,23 @@ class PageViewModel: ObservableObject {
     // MARK: - Data Loading
     func loadData() async {
         isLoading = true
-        defer { isLoading = false } // Guaranteed to execute after function completes
+        defer { isLoading = false }
         
         do {
-            // Try network first
-            let networkPage = try await networkService.fetchPage()
-            self.page = networkPage.withDepthLevels()
-            // TODO: Save to cache
+            // Network call and processing in background
+            let networkPage = try await Task.detached(priority: .background) {
+                try await self.networkService.fetchPage().withDepthLevels()
+            }.value
+            
+            let realmItem = RealmItem(item: networkPage, isRootPage: true)
+            let realm = try await Realm()
+            
+            try! realm.write {
+                realm.deleteAll()
+                realm.add(realmItem)
+            }
         } catch {
             errorMessage = handleError(error)
-            // TODO: Fallback to cached data
         }
     }
     

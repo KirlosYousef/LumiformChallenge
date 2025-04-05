@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BC6591672DA175C300279A25 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC6591662DA175C300279A25 /* RealmSwift */; };
+		BC65916A2DA175E100279A25 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC6591692DA175E100279A25 /* RealmSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BC780E8B2D9DB9EF001D338E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -15,6 +20,19 @@
 			remoteInfo = LumiformChallenge;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BC65916C2DA175E100279A25 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BC780E7D2D9DB9EC001D338E /* LumiformChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LumiformChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC6591672DA175C300279A25 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,17 +86,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC65916A2DA175E100279A25 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC6591682DA175E100279A25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BC780E742D9DB9EC001D338E = {
 			isa = PBXGroup;
 			children = (
 				BC780E7F2D9DB9EC001D338E /* LumiformChallenge */,
 				BC780E8D2D9DB9EF001D338E /* LumiformChallengeTests */,
+				BC6591682DA175E100279A25 /* Frameworks */,
 				BC780E7E2D9DB9EC001D338E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,6 +139,7 @@
 			);
 			name = LumiformChallenge;
 			packageProductDependencies = (
+				BC6591662DA175C300279A25 /* RealmSwift */,
 			);
 			productName = LumiformChallenge;
 			productReference = BC780E7D2D9DB9EC001D338E /* LumiformChallenge.app */;
@@ -123,6 +152,7 @@
 				BC780E862D9DB9EF001D338E /* Sources */,
 				BC780E872D9DB9EF001D338E /* Frameworks */,
 				BC780E882D9DB9EF001D338E /* Resources */,
+				BC65916C2DA175E100279A25 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,6 +164,7 @@
 			);
 			name = LumiformChallengeTests;
 			packageProductDependencies = (
+				BC6591692DA175E100279A25 /* RealmSwift */,
 			);
 			productName = LumiformChallengeTests;
 			productReference = BC780E8A2D9DB9EF001D338E /* LumiformChallengeTests.xctest */;
@@ -167,6 +198,9 @@
 			);
 			mainGroup = BC780E742D9DB9EC001D338E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BC6591652DA175C300279A25 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BC780E7E2D9DB9EC001D338E /* Products */;
 			projectDirPath = "";
@@ -467,6 +501,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BC6591652DA175C300279A25 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.54.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BC6591662DA175C300279A25 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6591652DA175C300279A25 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		BC6591692DA175E100279A25 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6591652DA175C300279A25 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BC780E752D9DB9EC001D338E /* Project object */;
 }
