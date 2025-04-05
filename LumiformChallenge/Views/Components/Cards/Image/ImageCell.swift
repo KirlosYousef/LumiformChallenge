@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ImageCell: View {
     let url: URL
@@ -15,7 +16,7 @@ struct ImageCell: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 4) {
-            AsyncImage(url: url) { phase in
+            WebImage(url: url) { phase in
                 switch phase {
                 case .empty:
                     ProgressView()
@@ -36,6 +37,7 @@ struct ImageCell: View {
                                 isExpanded.toggle()
                             }
                         }
+                        .transition(.fade(duration: 1))
                 case .failure:
                     Image(systemName: "photo.badge.exclamationmark.fill")
                         .resizable()

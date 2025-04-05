@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 /// Full screen image preview with pinch-to-zoom
 struct ImageDetailView: View {
@@ -20,7 +21,7 @@ struct ImageDetailView: View {
     
     var body: some View {
         NavigationStack {
-            AsyncImage(url: url) { phase in
+            WebImage(url: url) { phase in
                 switch phase {
                 case .empty:
                     ProgressView()
