@@ -11,6 +11,7 @@
 		BC0A821F2DA1A5F4002FEEE3 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = BC6591662DA175C300279A25 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		BC6591672DA175C300279A25 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC6591662DA175C300279A25 /* RealmSwift */; };
 		BC65916A2DA175E100279A25 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC6591692DA175E100279A25 /* RealmSwift */; };
+		BCF733C62DA342B800B79744 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BCF733C52DA342B800B79744 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		BC780E7D2D9DB9EC001D338E /* LumiformChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LumiformChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC780E8A2D9DB9EF001D338E /* LumiformChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LumiformChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF733912DA3184400B79744 /* LumiformChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LumiformChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCF733C52DA342B800B79744 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -147,6 +149,7 @@
 		BC780E742D9DB9EC001D338E = {
 			isa = PBXGroup;
 			children = (
+				BCF733C52DA342B800B79744 /* README.md */,
 				BC780E7F2D9DB9EC001D338E /* LumiformChallenge */,
 				BC780E8D2D9DB9EF001D338E /* LumiformChallengeTests */,
 				BCF733922DA3184400B79744 /* LumiformChallengeUITests */,
@@ -294,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCF733C62DA342B800B79744 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +577,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L3Y3NN5H2E;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = KirlosYousef.LumiformChallengeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -590,6 +595,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L3Y3NN5H2E;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = KirlosYousef.LumiformChallengeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
