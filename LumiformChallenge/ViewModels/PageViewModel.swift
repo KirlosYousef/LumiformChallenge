@@ -49,22 +49,24 @@ class PageViewModel: ObservableObject {
     func loadData() async {
         isLoading = true
         
-        defer { 
+        defer {
             isLoading = false
         }
         
         do {
-            // Network call and processing in background
-            let networkPage = try await Task.detached(priority: .background) {
-                try await self.networkService.fetchPage().withDepthLevels()
-            }.value
-            
-            let realmItem = RealmItem(item: networkPage, isRootPage: true)
-            let realm = try await Realm()
-            
-            try! realm.write {
-                realm.deleteAll()
-                realm.add(realmItem)
+            if try await !hasForceState() {
+                // Network call and processing in background
+                let networkPage = try await Task.detached(priority: .background) {
+                    try await self.networkService.fetchPage().withDepthLevels()
+                }.value
+                
+                let realmItem = RealmItem(item: networkPage, isRootPage: true)
+                let realm = try await Realm()
+                
+                try! realm.write {
+                    realm.deleteAll()
+                    realm.add(realmItem)
+                }
             }
         } catch {
             errorMessage = handleError(error)
@@ -99,5 +101,41 @@ class PageViewModel: ObservableObject {
             return networkError.localizedDescription
         }
         return "An unexpected error occurred: \(error.localizedDescription)"
+    }
+    
+    
+}
+
+// MARK: - Force state for UITestings
+extension PageViewModel {
+    /// Checks for any force state for the UITestings
+    private func hasForceState() async throws -> Bool {
+        let processInfo = ProcessInfo.processInfo
+        
+        if processInfo.isUITesting {
+            let realm = try await Realm()
+            
+            if processInfo.useMockData && !processInfo.forceEmptyState { // Use mock data
+                try! realm.write {
+                    let realmItem = RealmItem(item: MockPage.valid, isRootPage: true)
+                    realm.deleteAll()
+                    realm.add(realmItem)
+                }
+            }
+            
+            if processInfo.forceEmptyState { // Force empty state
+                try! realm.write {
+                    realm.deleteAll()
+                }
+            } else if processInfo.forceErrorState {  // Force error state
+                errorMessage = handleError(NetworkError.invalidURL)
+            } else if processInfo.forceLoadingState {  // Force loading state
+                try await Task.sleep(nanoseconds: 10_000_000_000)
+            }
+            
+            return true
+        }
+        
+        return false 
     }
 }

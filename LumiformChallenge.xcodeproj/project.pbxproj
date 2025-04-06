@@ -21,6 +21,13 @@
 			remoteGlobalIDString = BC780E7C2D9DB9EC001D338E;
 			remoteInfo = LumiformChallenge;
 		};
+		BCF733972DA3184400B79744 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC780E752D9DB9EC001D338E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC780E7C2D9DB9EC001D338E;
+			remoteInfo = LumiformChallenge;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +57,7 @@
 /* Begin PBXFileReference section */
 		BC780E7D2D9DB9EC001D338E /* LumiformChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LumiformChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC780E8A2D9DB9EF001D338E /* LumiformChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LumiformChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCF733912DA3184400B79744 /* LumiformChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LumiformChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -67,6 +75,13 @@
 			);
 			target = BC780E892D9DB9EF001D338E /* LumiformChallengeTests */;
 		};
+		BCF733AF2DA3251000B79744 /* Exceptions for "LumiformChallengeUITests" folder in "LumiformChallenge" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Helpers/LaunchArguments.swift,
+			);
+			target = BC780E7C2D9DB9EC001D338E /* LumiformChallenge */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -82,6 +97,14 @@
 				BCD5B9182D9DDC0E00E2A4A7 /* Exceptions for "LumiformChallengeTests" folder in "LumiformChallengeTests" target */,
 			);
 			path = LumiformChallengeTests;
+			sourceTree = "<group>";
+		};
+		BCF733922DA3184400B79744 /* LumiformChallengeUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BCF733AF2DA3251000B79744 /* Exceptions for "LumiformChallengeUITests" folder in "LumiformChallenge" target */,
+			);
+			path = LumiformChallengeUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -104,6 +127,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BCF7338E2DA3184400B79744 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -119,6 +149,7 @@
 			children = (
 				BC780E7F2D9DB9EC001D338E /* LumiformChallenge */,
 				BC780E8D2D9DB9EF001D338E /* LumiformChallengeTests */,
+				BCF733922DA3184400B79744 /* LumiformChallengeUITests */,
 				BC6591682DA175E100279A25 /* Frameworks */,
 				BC780E7E2D9DB9EC001D338E /* Products */,
 			);
@@ -129,6 +160,7 @@
 			children = (
 				BC780E7D2D9DB9EC001D338E /* LumiformChallenge.app */,
 				BC780E8A2D9DB9EF001D338E /* LumiformChallengeTests.xctest */,
+				BCF733912DA3184400B79744 /* LumiformChallengeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +218,29 @@
 			productReference = BC780E8A2D9DB9EF001D338E /* LumiformChallengeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BCF733902DA3184400B79744 /* LumiformChallengeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCF7339B2DA3184400B79744 /* Build configuration list for PBXNativeTarget "LumiformChallengeUITests" */;
+			buildPhases = (
+				BCF7338D2DA3184400B79744 /* Sources */,
+				BCF7338E2DA3184400B79744 /* Frameworks */,
+				BCF7338F2DA3184400B79744 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCF733982DA3184400B79744 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BCF733922DA3184400B79744 /* LumiformChallengeUITests */,
+			);
+			name = LumiformChallengeUITests;
+			packageProductDependencies = (
+			);
+			productName = LumiformChallengeUITests;
+			productReference = BCF733912DA3184400B79744 /* LumiformChallengeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -200,6 +255,10 @@
 						CreatedOnToolsVersion = 16.3;
 					};
 					BC780E892D9DB9EF001D338E = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = BC780E7C2D9DB9EC001D338E;
+					};
+					BCF733902DA3184400B79744 = {
 						CreatedOnToolsVersion = 16.3;
 						TestTargetID = BC780E7C2D9DB9EC001D338E;
 					};
@@ -225,6 +284,7 @@
 			targets = (
 				BC780E7C2D9DB9EC001D338E /* LumiformChallenge */,
 				BC780E892D9DB9EF001D338E /* LumiformChallengeTests */,
+				BCF733902DA3184400B79744 /* LumiformChallengeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -238,6 +298,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BC780E882D9DB9EF001D338E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCF7338F2DA3184400B79744 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -261,6 +328,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BCF7338D2DA3184400B79744 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -268,6 +342,11 @@
 			isa = PBXTargetDependency;
 			target = BC780E7C2D9DB9EC001D338E /* LumiformChallenge */;
 			targetProxy = BC780E8B2D9DB9EF001D338E /* PBXContainerItemProxy */;
+		};
+		BCF733982DA3184400B79744 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC780E7C2D9DB9EC001D338E /* LumiformChallenge */;
+			targetProxy = BCF733972DA3184400B79744 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -487,6 +566,40 @@
 			};
 			name = Release;
 		};
+		BCF733992DA3184400B79744 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L3Y3NN5H2E;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KirlosYousef.LumiformChallengeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LumiformChallenge;
+			};
+			name = Debug;
+		};
+		BCF7339A2DA3184400B79744 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L3Y3NN5H2E;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KirlosYousef.LumiformChallengeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LumiformChallenge;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -513,6 +626,15 @@
 			buildConfigurations = (
 				BC780EA22D9DB9EF001D338E /* Debug */,
 				BC780EA32D9DB9EF001D338E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCF7339B2DA3184400B79744 /* Build configuration list for PBXNativeTarget "LumiformChallengeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCF733992DA3184400B79744 /* Debug */,
+				BCF7339A2DA3184400B79744 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
