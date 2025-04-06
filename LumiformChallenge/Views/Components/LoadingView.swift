@@ -11,6 +11,7 @@ struct LoadingView: View {
     var body: some View {
         Color.gray.opacity(0.4)
             .ignoresSafeArea()
+        
         ProgressView()
             .progressViewStyle(.circular)
             .tint(.white)

@@ -20,8 +20,9 @@ import Testing
             await vm.loadData()
             
             // Assert
-            await #expect(vm.isLoading == false)
-//            await #expect(vm.page?.id == mockPage.id)
+            let page = await vm.getPageItem()
+            try? #require(page != nil)
+            #expect(page?.title == mockPage.title)
         }
         
         @Test("Test loading state during fetch") func loadingStateDuringFetch() async {

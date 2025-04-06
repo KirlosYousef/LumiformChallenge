@@ -1,5 +1,5 @@
 //
-//  MainPageView.swift
+//  MainView.swift
 //  LumiformChallenge
 //
 //  Created by Kirlos Yousef on 03/04/2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainPageView: View {
+struct MainView: View {
     @StateObject private var viewModel = PageViewModel()
     
     var body: some View {
@@ -19,7 +19,7 @@ struct MainPageView: View {
                     }
                 } else {
                     List(viewModel.page.where { $0.isRootPage }) { pageItem in
-                        HierarchicalListView(rootItem: pageItem.toItem())
+                        HierarchicalListView(rootItem: pageItem.item)
                     }
                     .listStyle(.plain)
                 }
@@ -53,7 +53,7 @@ struct HierarchicalListView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                ContentItemView(item: rootItem, isLast: true)
+                ContentItemView(item: rootItem)
             }
             .padding(.horizontal)
         }
@@ -61,5 +61,5 @@ struct HierarchicalListView: View {
 }
 
 #Preview {
-    MainPageView()
+    MainView()
 }

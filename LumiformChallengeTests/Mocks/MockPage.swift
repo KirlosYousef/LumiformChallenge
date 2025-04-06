@@ -55,6 +55,11 @@ enum MockPage {
         imageURL: nil
     )
     
+    static let validImage = Item(
+        type: .image,
+        imageURL: "https://robohash.org/100?&set=set4&size=400x400"
+    )
+    
     static let invalidTitle = Item(
         type: .page,
         title: nil, // Invalid

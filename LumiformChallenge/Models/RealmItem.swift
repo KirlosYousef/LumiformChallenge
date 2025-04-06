@@ -36,12 +36,12 @@ class RealmItem: Object, Identifiable {
         self.items = children
     }
     
-    func toItem() -> Item {
+    var item: Item {
         Item(
             id: UUID(uuidString: id.stringValue) ?? UUID(),
             type: ItemType(rawValue: type) ?? .page,
             title: title,
-            items: items.map { $0.toItem() },
+            items: items.map { $0.item },
             imageURL: imageURL,
             depthLevel: depthLevel
         )

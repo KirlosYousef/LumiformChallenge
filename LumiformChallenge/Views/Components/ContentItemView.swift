@@ -10,18 +10,18 @@ import SwiftUI
 /// Displays appropriate view based on the content item type
 struct ContentItemView: View {
     let item: Item
-    let isLast: Bool
     
     var body: some View {
         switch item.type {
         case .page:
             PageView(item: item)
         case .section:
-            SectionView(item: item, isLast: isLast)
+            SectionView(item: item)
         case .text:
-            TextViewCell(text: item.title ?? "No text", depth: item.depthLevel, isLast: isLast)
+            TextViewCell(text: item.title ?? "No text",
+                         depth: item.depthLevel)
         case .image:
-            ImageView(item: item, isLast: isLast)
+            ImageView(item: item)
         }
     }
 }
@@ -29,10 +29,7 @@ struct ContentItemView: View {
 #Preview {
     ScrollView {
         VStack(alignment: .leading) {
-            ContentItemView(
-                item: MockPage.valid,
-                isLast: true
-            )
+            ContentItemView(item: MockPage.valid)
         }
         .padding()
     }

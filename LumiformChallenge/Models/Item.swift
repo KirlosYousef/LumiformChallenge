@@ -19,10 +19,6 @@ struct Item: Codable, Identifiable {
     var imageURL: String?
     var depthLevel: Int = 0
     
-    var children: [Item] {
-        return items ?? []
-    }
-    
     enum CodingKeys: String, CodingKey {
         case type, title, items
         case imageURL = "src"
@@ -49,7 +45,7 @@ extension Item {
         // Set current item's depth
         self.depthLevel = parentDepth + 1
         
-        // Recursively update children with current depth
+        // Recursively update children items with current depth
         items?.enumerated().forEach { ind, item in
             if item.type == .page {
                 // Pages are always at first level

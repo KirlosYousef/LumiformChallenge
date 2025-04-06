@@ -10,7 +10,6 @@ import SwiftUI
 struct TextViewCell: View {
     let text: String
     let depth: Int
-    let isLast: Bool
     
     var body: some View {
         Text(text)
@@ -21,6 +20,6 @@ struct TextViewCell: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    TextViewCell(text: "This is a sample text item", depth: 2, isLast: true)
+    TextViewCell(text: "This is a sample text item", depth: 2)
         .padding()
 }

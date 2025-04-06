@@ -1,5 +1,5 @@
 //
-//  NetworkClient.swift
+//  NetworkClientProtocol.swift
 //  LumiformChallenge
 //
 //  Created by Kirlos Yousef on 02/04/2025.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol NetworkClient {
+protocol NetworkClientProtocol {
     func data(from url: URL) async throws -> (Data, URLResponse)
 }
 
-extension URLSession: NetworkClient {} // Conform URLSession to protocol
+extension URLSession: NetworkClientProtocol {} // Conform URLSession to protocol

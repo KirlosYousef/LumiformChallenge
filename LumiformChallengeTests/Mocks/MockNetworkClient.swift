@@ -8,7 +8,7 @@
 import Foundation
 @testable import LumiformChallenge
 
-struct MockNetworkClient: NetworkClient {
+struct MockNetworkClient: NetworkClientProtocol {
     let data: Data
     let statusCode: Int
     

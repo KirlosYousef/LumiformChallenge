@@ -7,16 +7,11 @@
 
 import Foundation
 
-protocol NetworkServiceProtocol {
-    /// Fetches the form page from the API
-    func fetchPage() async throws -> Item
-}
-
 class NetworkService {
-    private let client: NetworkClient
+    private let client: NetworkClientProtocol
     
     // MARK: - Initialization (Dependency Injection)
-    init(client: NetworkClient = URLSession.shared) {
+    init(client: NetworkClientProtocol = URLSession.shared) {
         self.client = client
     }
 }

@@ -32,7 +32,6 @@ struct MockDelayedNetworkService: NetworkServiceProtocol {
     }
 }
 
-
 struct MockFailureNetworkService: NetworkServiceProtocol {
     func fetchPage() async throws -> Item {
         throw NetworkError.invalidURL

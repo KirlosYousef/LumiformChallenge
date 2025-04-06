@@ -20,38 +20,28 @@ struct ImageCell: View {
                 switch phase {
                 case .empty:
                     ProgressView()
-                        .frame(height: 200)
-                        .frame(maxWidth: 300)
-                        .background(Color.gray.opacity(0.1))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
                 case .success(let image):
                     image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 200)
-                        .frame(maxWidth: 300)
-                        .clipped()
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
                         .onTapGesture {
                             withAnimation(.spring(response: 0.3)) {
                                 isExpanded.toggle()
                             }
                         }
-                        .transition(.fade(duration: 1))
                 case .failure:
                     Image(systemName: "photo.badge.exclamationmark.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 80, height: 80)
-                        .frame(height: 200)
-                        .frame(maxWidth: 300)
-                        .background(Color.gray.opacity(0.1))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .font(.largeTitle)
                 @unknown default:
                     EmptyView()
                 }
             }
-            .frame(maxWidth: .infinity)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(height: 200)
+            .frame(maxWidth: 300)
+            .background(Color.gray.opacity(0.1))
+            .clipped()
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .transition(.fade(duration: 1))
             
             Text(title)
                 .lineLimit(1)
@@ -64,7 +54,7 @@ struct ImageCell: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    if let url = URL(string: "https://robohash.org/100?&set=set4&size=400x400") {
+    if let url = MockPage.validImage.getImageURL() {
         ImageCell(url: url, title: "Sample Image")
             .padding()
     } else {

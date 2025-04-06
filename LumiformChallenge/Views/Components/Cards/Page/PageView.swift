@@ -13,11 +13,9 @@ struct PageView: View {
     var body: some View {
         PageHeaderView(title: item.title ?? "Untitled Page")
         
-        ForEach(Array(item.children.enumerated()), id: \.1.id) { index, child in
-            ContentItemView(
-                item: child,
-                isLast: index == item.children.count - 1
-            )
+        
+        ForEach(Array((item.items ?? []).enumerated()), id: \.1.id) { index, child in
+            ContentItemView(item: child)
         }
     }
 }

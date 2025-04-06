@@ -14,10 +14,6 @@ struct ImageDetailView: View {
     let title: String
     
     @Environment(\.dismiss) private var dismiss
-    @State private var scale: CGFloat = 1.0
-    @State private var lastScale: CGFloat = 1.0
-    @State private var offset: CGSize = .zero
-    @State private var lastOffset: CGSize = .zero
     
     var body: some View {
         NavigationStack {
@@ -27,67 +23,16 @@ struct ImageDetailView: View {
                     ProgressView()
                 case .success(let image):
                     image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .scaleEffect(scale)
-                        .offset(offset)
-                        .gesture(
-                            MagnificationGesture()
-                                .onChanged { value in
-                                    withAnimation {
-                                        let delta = value / lastScale
-                                        lastScale = value
-                                        scale = min(max(scale * delta, 1), 5)
-                                    }
-                                }
-                                .onEnded { _ in
-                                    withAnimation {
-                                        lastScale = 1.0
-                                    }
-                                }
-                        )
-                        .gesture(
-                            DragGesture()
-                                .onChanged { value in
-                                    withAnimation {
-                                        offset = CGSize(
-                                            width: lastOffset.width + value.translation.width,
-                                            height: lastOffset.height + value.translation.height
-                                        )
-                                    }
-                                }
-                                .onEnded { _ in
-                                    lastOffset = offset
-                                    
-                                    // Reset if scale is back to normal
-                                    if scale <= 1.01 {
-                                        withAnimation(.spring()) {
-                                            offset = .zero
-                                            lastOffset = .zero
-                                        }
-                                    }
-                                }
-                        )
-                        .onTapGesture(count: 2) {
-                            withAnimation(.spring()) {
-                                if scale > 1 {
-                                    scale = 1.0
-                                    offset = .zero
-                                    lastOffset = .zero
-                                } else {
-                                    scale = 2.0
-                                }
-                            }
-                        }
+                        .imageZoomFunctionality
                 case .failure:
                     Image(systemName: "photo.badge.exclamationmark.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
                         .frame(width: 150, height: 150)
                 @unknown default:
                     EmptyView()
                 }
             }
+            .resizable()
+            .aspectRatio(contentMode: .fit)
             .frame(maxHeight: .infinity)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -103,5 +48,14 @@ struct ImageDetailView: View {
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
         }
+    }
+}
+
+#Preview {
+    if let url = MockPage.validImage.getImageURL() {
+        ImageDetailView(url: url, title: "Sample Image")
+            .padding()
+    } else {
+        Text("Invalid URL")
     }
 }

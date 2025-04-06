@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SectionView: View {
     let item: Item
-    let isLast: Bool
     
     @State private var isExpanded: Bool = false
     
@@ -18,11 +17,8 @@ struct SectionView: View {
             CollapseButton(isExpanded: $isExpanded, item: item)
             
             if isExpanded {
-                ForEach(Array(item.children.enumerated()), id: \.1.id) { index, child in
-                    ContentItemView(
-                        item: child,
-                        isLast: index == item.children.count - 1
-                    )
+                ForEach(Array((item.items ?? []).enumerated()), id: \.1.id) { index, child in
+                    ContentItemView(item: child)
                     .transition(
                         .move(edge: .top)
                         .combined(with: .opacity)
@@ -31,7 +27,7 @@ struct SectionView: View {
                 .padding(.leading, 4)
             }
         }
-        .animatedCardStyle()
+        .cardStyle
     }
 }
 
@@ -52,7 +48,8 @@ struct CollapseButton: View {
                     .frame(width: 24)
                 
                 Text(item.title ?? "Untitled Section")
-                    .hierarchyFont(itemType: .section, depthLevel: item.depthLevel)
+                    .hierarchyFont(itemType: .section,
+                                   depthLevel: item.depthLevel)
                 
                 Spacer()
             }
@@ -67,6 +64,6 @@ struct CollapseButton: View {
 #Preview(traits: .sizeThatFitsLayout, body: {
     let section = MockPage.validSection
     
-    return SectionView(item: section, isLast: false)
+    return SectionView(item: section)
         .padding()
 })

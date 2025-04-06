@@ -30,6 +30,7 @@ class PageViewModel: ObservableObject {
     }
     
     // MARK: - Data Loading
+    /// Loads the data from network and updates the current caching on Realm
     func loadData() async {
         isLoading = true
         defer { isLoading = false }
@@ -50,6 +51,19 @@ class PageViewModel: ObservableObject {
         } catch {
             errorMessage = handleError(error)
         }
+    }
+    
+    /// Returns back the current page item from Realm
+    func getPageItem() async -> Item? {
+        do {
+            let realm = try await Realm()
+            let page: Item? = realm.objects(RealmItem.self).first?.item
+            return page
+        } catch {
+            errorMessage = handleError(error)
+        }
+        
+        return nil
     }
     
     // MARK: - Error Handling
