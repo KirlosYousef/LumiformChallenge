@@ -7,29 +7,20 @@
 
 import SwiftUI
 
+/// Main content browser screen of the application
 struct MainView: View {
     @StateObject private var viewModel = PageViewModel()
     
     var body: some View {
         NavigationStack {
             ZStack {
-                if viewModel.page.isEmpty {
-                    UnavailableDataView {
-                        loadData()
-                    }
-                } else {
-                    List(viewModel.page.where { $0.isRootPage }) { pageItem in
-                        HierarchicalListView(rootItem: pageItem.item)
-                    }
-                    .listStyle(.plain)
-                }
-            }
-            .navigationTitle("Content Browser")
-            .overlay {
+                contentView
+                
                 if viewModel.isLoading {
                     LoadingView()
                 }
             }
+            .navigationTitle("Content Browser")
             .alert("Error", isPresented: $viewModel.hasError) {
                 Button("OK") { viewModel.removeError() }
             } message: {
@@ -40,22 +31,20 @@ struct MainView: View {
         }
     }
     
+    /// The main content view based on data availability
+    @ViewBuilder
+    private var contentView: some View {
+        if viewModel.page.isEmpty {
+            UnavailableDataView(onRetry: loadData)
+        } else {
+            ContentListView(pageItems: viewModel.page)
+        }
+    }
+    
+    /// Loads page data from the API
     private func loadData() {
         Task {
             await viewModel.loadData()
-        }
-    }
-}
-
-struct HierarchicalListView: View {
-    let rootItem: Item
-    
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
-                ContentItemView(item: rootItem)
-            }
-            .padding(.horizontal)
         }
     }
 }

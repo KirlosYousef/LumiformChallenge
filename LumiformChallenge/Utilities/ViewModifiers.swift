@@ -43,11 +43,11 @@ struct CardStyle: ViewModifier {
         content
             .padding()
             .background {
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: Constants.UI.standardCornerRadius)
                     .fill(Color(.secondarySystemBackground))
                     .strokeBorder(Color(.label).opacity(0.1), lineWidth: 0.5)
             }
-            .animation(.spring(response: 0.3), value: UUID())
+            .animation(.spring(response: Constants.UI.standardAnimationDuration), value: UUID())
     }
 }
 

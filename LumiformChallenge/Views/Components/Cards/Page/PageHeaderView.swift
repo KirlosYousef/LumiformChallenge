@@ -11,7 +11,7 @@ struct PageHeaderView: View {
     let title: String
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: Constants.UI.standardlargeSpacing) {
             Text(title)
                 .hierarchyFont(itemType: .page)
                 .padding(.vertical, 12)

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Empty state view when no content is available
 struct UnavailableDataView: View {
     var onRetry: () -> Void
     

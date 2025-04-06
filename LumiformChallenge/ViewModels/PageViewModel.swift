@@ -8,32 +8,50 @@
 import SwiftUI
 import RealmSwift
 
+/// View model for managing page content data
+/// Handles data loading, caching, and state management
 @MainActor
 class PageViewModel: ObservableObject {
     // MARK: - Published Properties
-    @ObservedResults(RealmItem.self) var page
-    @Published private(set)var isLoading = false
     
+    /// The collection of page items from Realm database
+    @ObservedResults(RealmItem.self) var page
+    
+    /// Indicates if data is currently being loaded
+    @Published private(set) var isLoading = false
+    
+    /// Indicates if there is an error to display
     @Published var hasError: Bool = false
-    @Published private(set)var errorMessage: String? {
+    
+    /// The error message to display to the user
+    @Published private(set) var errorMessage: String? {
         didSet {
             hasError = errorMessage != nil
         }
     }
     
     // MARK: - Dependencies
+    
+    /// Service for network operations
     private let networkService: NetworkServiceProtocol
     
     // MARK: - Initialization (Dependency Injection)
+    
+    /// Initializes the view model with dependencies
+    /// - Parameter networkService: The service used for network operations
     init(networkService: NetworkServiceProtocol = NetworkService()) {
         self.networkService = networkService
     }
     
     // MARK: - Data Loading
-    /// Loads the data from network and updates the current caching on Realm
+    
+    /// Loads page data from the network API and updates local cache in Realm
     func loadData() async {
         isLoading = true
-        defer { isLoading = false }
+        
+        defer { 
+            isLoading = false
+        }
         
         do {
             // Network call and processing in background
@@ -53,7 +71,7 @@ class PageViewModel: ObservableObject {
         }
     }
     
-    /// Returns back the current page item from Realm
+    /// - Returns: The root Item if available, nil otherwise
     func getPageItem() async -> Item? {
         do {
             let realm = try await Realm()
@@ -67,10 +85,15 @@ class PageViewModel: ObservableObject {
     }
     
     // MARK: - Error Handling
+    
+    /// Clears the current error message
     func removeError() {
         errorMessage = nil
     }
     
+    /// Handles errors and returns appropriate error messages
+    /// - Parameter error: The error to handle
+    /// - Returns: A user-friendly error message
     private func handleError(_ error: Error) -> String {
         if let networkError = error as? NetworkError {
             return networkError.localizedDescription

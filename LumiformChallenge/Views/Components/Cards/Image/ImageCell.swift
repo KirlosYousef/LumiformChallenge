@@ -15,7 +15,7 @@ struct ImageCell: View {
     @State private var isExpanded = false
     
     var body: some View {
-        VStack(alignment: .center, spacing: 4) {
+        VStack(alignment: .center, spacing: Constants.UI.standardSmallSpacing) {
             WebImage(url: url) { phase in
                 switch phase {
                 case .empty:
@@ -23,7 +23,7 @@ struct ImageCell: View {
                 case .success(let image):
                     image
                         .onTapGesture {
-                            withAnimation(.spring(response: 0.3)) {
+                            withAnimation(.spring(response: Constants.UI.standardAnimationDuration)) {
                                 isExpanded.toggle()
                             }
                         }
@@ -40,7 +40,7 @@ struct ImageCell: View {
             .frame(maxWidth: 300)
             .background(Color.gray.opacity(0.1))
             .clipped()
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .clipShape(RoundedRectangle(cornerRadius: Constants.UI.standardCornerRadius))
             .transition(.fade(duration: 1))
             
             Text(title)

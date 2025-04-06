@@ -13,7 +13,7 @@ struct SectionView: View {
     @State private var isExpanded: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: Constants.UI.standardSmallSpacing) {
             CollapseButton(isExpanded: $isExpanded, item: item)
             
             if isExpanded {
@@ -37,7 +37,7 @@ struct CollapseButton: View {
     
     var body: some View {
         Button(action: {
-            withAnimation(.spring(response: 0.3)) {
+            withAnimation(.spring(response: Constants.UI.standardAnimationDuration)) {
                 isExpanded.toggle()
             }
         }) {
