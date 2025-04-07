@@ -47,6 +47,7 @@ struct ImageDetailView: View {
             }
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
     }
 }

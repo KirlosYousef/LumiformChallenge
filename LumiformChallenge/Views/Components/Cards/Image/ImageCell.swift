@@ -47,6 +47,7 @@ struct ImageCell: View {
                 .lineLimit(1)
                 .hierarchyFont(itemType: .image)
         }
+        .frame(maxWidth: .infinity)
         .fullScreenCover(isPresented: $isExpanded, content: {
             ImageDetailView(url: url, title: title)
         })
