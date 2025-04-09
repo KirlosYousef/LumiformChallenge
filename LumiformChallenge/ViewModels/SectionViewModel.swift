@@ -11,8 +11,8 @@ class SectionViewModel: ObservableObject {
     @Published var repeatedItems: [Item] = []
     
     func addRepeatedItems(items: [Item]?) {
-        for item in (items ?? []){
-            repeatedItems.append(item)
+        if let items {
+            repeatedItems.append(contentsOf: items)
         }
     }
 }
