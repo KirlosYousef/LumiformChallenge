@@ -16,14 +16,16 @@ class RealmItem: Object, Identifiable {
     @Persisted var imageURL: String?
     @Persisted var depthLevel: Int
     @Persisted var isRootPage: Bool = false
+    @Persisted var repeated: Bool?
     
-    convenience init(item: Item, isRootPage: Bool = false) {
+    convenience init(item: Item, isRootPage: Bool = false) {    
         self.init()
         self.type = item.type.rawValue
         self.title = item.title
         self.imageURL = item.imageURL
         self.depthLevel = item.depthLevel
         self.isRootPage = isRootPage
+        self.repeated = item.repeated
         
         // List initialization
         let children = List<RealmItem>()
@@ -43,7 +45,8 @@ class RealmItem: Object, Identifiable {
             title: title,
             items: items.map { $0.item },
             imageURL: imageURL,
-            depthLevel: depthLevel
+            depthLevel: depthLevel,
+            repeated: repeated
         )
     }
 }

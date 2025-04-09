@@ -39,8 +39,8 @@ enum AppEnvironment {
             case .development,
                     .staging,
                     .production:
-                baseURL = URL(string: "https://mocki.io/v1")!
-                pageEndpoint = "6c823976-465e-401e-ae8d-d657d278e98e" // Should be aligned with the environment
+                baseURL = URL(string: "https://run.mocky.io/v3")!
+                pageEndpoint = "dfbca98f-8356-4b44-8e37-d12ef918e123" // Should be aligned with the environment
             }
         }
     }

@@ -8,23 +8,49 @@
 import SwiftUI
 
 struct SectionView: View {
-    let item: Item
+    @StateObject var sectionViewModel = SectionViewModel()
     
     @State private var isExpanded: Bool = false
     
+    let item: Item
+    
     var body: some View {
         VStack(alignment: .leading, spacing: Constants.UI.standardSmallSpacing) {
-            CollapseButton(isExpanded: $isExpanded, item: item)
-            
-            if isExpanded {
-                ForEach(Array((item.items ?? []).enumerated()), id: \.1.id) { index, child in
-                    ContentItemView(item: child)
-                    .transition(
-                        .move(edge: .top)
-                        .combined(with: .opacity)
-                    )
+            if item.repeated ?? false {
+                Button {
+                    sectionViewModel.addRepeatedItems(items: item.items)
+                    print("repeat")
+                } label: {
+                    Text("Repeat")
                 }
-                .padding(.leading, 4)
+                
+                ForEach(Array(sectionViewModel.repeatedItems.enumerated()), id: \.1.id) { index, child in
+                    ContentItemView(item: child)
+                        .transition(
+                            .move(edge: .top)
+                            .combined(with: .opacity)
+                        )
+                    
+                    Button {
+                        sectionViewModel.repeatedItems.remove(at: index)
+                        print("Delete")
+                    } label: {
+                        Text("Delete \(index)")
+                    }
+                }
+            } else {
+                CollapseButton(isExpanded: $isExpanded, item: item)
+                
+                if isExpanded {
+                    ForEach(Array((item.items ?? []).enumerated()), id: \.1.id) { index, child in
+                        ContentItemView(item: child)
+                            .transition(
+                                .move(edge: .top)
+                                .combined(with: .opacity)
+                            )
+                    }
+                    .padding(.leading, 4)
+                }
             }
         }
         .cardStyle

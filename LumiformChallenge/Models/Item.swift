@@ -18,9 +18,10 @@ struct Item: Codable, Identifiable {
     var items: [Item]?
     var imageURL: String?
     var depthLevel: Int = 0
+    var repeated: Bool?
     
     enum CodingKeys: String, CodingKey {
-        case type, title, items
+        case type, title, items, repeated
         case imageURL = "src"
     }
     

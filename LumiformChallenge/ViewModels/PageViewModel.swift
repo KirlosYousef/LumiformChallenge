@@ -14,9 +14,6 @@ import RealmSwift
 class PageViewModel: ObservableObject {
     // MARK: - Published Properties
     
-    /// The collection of page items from Realm database
-    @ObservedResults(RealmItem.self) var page
-    
     /// Indicates if data is currently being loaded
     @Published private(set) var isLoading = false
     
@@ -61,12 +58,7 @@ class PageViewModel: ObservableObject {
                 }.value
                 
                 let realmItem = RealmItem(item: networkPage, isRootPage: true)
-                let realm = try await Realm()
-                
-                try! realm.write {
-                    realm.deleteAll()
-                    realm.add(realmItem)
-                }
+                await RealmService.shared.overwrite(item: realmItem)
             }
         } catch {
             errorMessage = handleError(error)
@@ -75,15 +67,7 @@ class PageViewModel: ObservableObject {
     
     /// - Returns: The root Item if available, nil otherwise
     func getPageItem() async -> Item? {
-        do {
-            let realm = try await Realm()
-            let page: Item? = realm.objects(RealmItem.self).first?.item
-            return page
-        } catch {
-            errorMessage = handleError(error)
-        }
-        
-        return nil
+        RealmService.shared.getRealmItems().first?.item
     }
     
     // MARK: - Error Handling
@@ -113,20 +97,15 @@ extension PageViewModel {
         let processInfo = ProcessInfo.processInfo
         
         if processInfo.isUITesting {
-            let realm = try await Realm()
+            let realm = RealmService.shared
             
             if processInfo.useMockData && !processInfo.forceEmptyState { // Use mock data
-                try! realm.write {
-                    let realmItem = RealmItem(item: MockPage.valid, isRootPage: true)
-                    realm.deleteAll()
-                    realm.add(realmItem)
-                }
+                let realmItem = RealmItem(item: MockPage.valid, isRootPage: true)
+                await realm.overwrite(item: realmItem)
             }
             
             if processInfo.forceEmptyState { // Force empty state
-                try! realm.write {
-                    realm.deleteAll()
-                }
+                await realm.removeAll()
             } else if processInfo.forceErrorState {  // Force error state
                 errorMessage = handleError(NetworkError.invalidURL)
             } else if processInfo.forceLoadingState {  // Force loading state
@@ -136,6 +115,6 @@ extension PageViewModel {
             return true
         }
         
-        return false 
+        return false
     }
 }

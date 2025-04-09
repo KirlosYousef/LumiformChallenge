@@ -10,6 +10,7 @@ import SwiftUI
 /// Main content browser screen of the application
 struct MainView: View {
     @StateObject private var viewModel = PageViewModel()
+    @StateObject private var cachingService = RealmService.shared
     
     var body: some View {
         NavigationStack {
@@ -34,10 +35,10 @@ struct MainView: View {
     /// The main content view based on data availability
     @ViewBuilder
     private var contentView: some View {
-        if viewModel.page.isEmpty {
+        if cachingService.page.isEmpty {
             UnavailableDataView(onRetry: loadData)
         } else {
-            ContentListView(pageItems: viewModel.page)
+            ContentListView(pageItems: cachingService.page)
         }
     }
     
